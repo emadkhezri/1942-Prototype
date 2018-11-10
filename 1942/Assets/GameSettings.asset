@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9d6e0036406f2d4a8ab7a81f1fe4cef, type: 3}
+  m_Name: GameSettings
+  m_EditorClassIdentifier: 
+  _meteorSpeed: 5
+  _meteorSpawningInterval: 0.5
+  _meteorSpawningBound:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 5, y: 8, z: 1}

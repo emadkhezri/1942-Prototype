@@ -150,6 +150,7 @@ MonoBehaviour:
   - {fileID: 114092211402853638, guid: f989d7cce8e130748bdc7a880370ce93, type: 2}
   - {fileID: 114482336417449468, guid: 10dc71104c5d4fe4e8215309b0fa9de2, type: 2}
   - {fileID: 114516122279202038, guid: a97f4b9450f1ce44c9f53426853422d2, type: 2}
+  _spawningTimeInterval: 0.2
 --- !u!4 &147844047
 Transform:
   m_ObjectHideFlags: 0
@@ -196,7 +197,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.11222855, g: 0.16397195, b: 0.24528301, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}

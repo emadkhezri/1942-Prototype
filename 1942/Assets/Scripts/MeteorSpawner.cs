@@ -8,11 +8,7 @@
     {
         [SerializeField]
         private MeteorEntity[] _meteors;
-
-        [SerializeField]
-        private bool _keepSpawning = true;
-        [SerializeField]
-        private float _spawningTimeInterval = 2;
+        
 
         private List<MeteorEntity> _activeMeteors;
 
@@ -37,9 +33,8 @@
 
         private IEnumerator SpawnInterval()
         {
-            while (_keepSpawning)
+            while (true)
             {
-                yield return new WaitForSeconds(_spawningTimeInterval);
 
                 //Unspawn invalid meteors
                 for (int i = 0; i < _activeMeteors.Count; i++)
@@ -53,9 +48,12 @@
 
                 }
 
+                //Spawn a meteor entity
                 MeteorEntity entity = ObjectPool<MeteorEntity>.Instance.AcquireObject();
                 entity.Init();
                 _activeMeteors.Add(entity);
+
+                yield return new WaitForSeconds(GameSettings.Instance.MeteorSpawningInterval);
             }
         }
 
