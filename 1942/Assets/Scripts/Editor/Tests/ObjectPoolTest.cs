@@ -13,33 +13,37 @@
         [SetUp]
         public void SetUp()
         {
-
+            _type1Pool = ObjectPool<Type1>.Instance;
+            Assert.AreEqual(0, _type1Pool.PoolSize);
+            _type1Pool.Load();
         }
 
         [Test]
         public void InstanceTest()
         {
-            _type1Pool = ObjectPool<Type1>.Instance;
             Assert.IsNotNull(_type1Pool);
             Assert.AreEqual(_type1Pool, ObjectPool<Type1>.Instance);
 
             ObjectPool<Type2> _type2Pool = ObjectPool<Type2>.Instance;
             Assert.AreNotEqual(_type1Pool, _type2Pool);
         }
-
+        
         [Test]
         public void PoolSizeTest()
         {
-            ObjectPool<Type1>.PoolSize = 20;
-            Assert.AreEqual(20, ObjectPool<Type1>.PoolSize);
-            _type1Pool = ObjectPool<Type1>.Instance;
-            Assert.AreEqual(20, ObjectPool<Type1>.PoolSize);
+            int defaultPoolSize = ObjectPool<Type1>.DEFAULT_POOL_SIZE;
+
+            Assert.AreEqual(defaultPoolSize, _type1Pool.PoolSize);
+            Type1 acquiredObject = _type1Pool.AcquireObject();
+            Assert.AreEqual(defaultPoolSize-1, _type1Pool.PoolSize);
+            _type1Pool.ReleaseObject(acquiredObject);
+            Assert.AreEqual(defaultPoolSize, _type1Pool.PoolSize);
+
         }
 
         [Test]
         public void AcquireObjectTest()
         {
-            _type1Pool = ObjectPool<Type1>.Instance;
             Type1 type1Object = _type1Pool.AcquireObject();
             Assert.IsNotNull(type1Object);
             Assert.IsTrue(type1Object.GetType() == typeof(Type1));
@@ -48,7 +52,6 @@
         [Test]
         public void ReleaseObjectTest()
         {
-            _type1Pool = ObjectPool<Type1>.Instance;
             Type1 type1Object = _type1Pool.AcquireObject();
             _type1Pool.ReleaseObject(type1Object);
             Assert.AreEqual(false, type1Object.gameObject.activeInHierarchy);
