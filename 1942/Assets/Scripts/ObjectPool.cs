@@ -1,6 +1,5 @@
 ﻿namespace com.emad.game
 {
-    using System.Collections;
     using System.Collections.Generic;
     using UnityEngine;
 
@@ -14,7 +13,7 @@
 
         private GameObject _poolContainer;
 
-        private Stack<T> _poolStack;
+        private List<T> _poolList;
 
         private static ObjectPool<T> _instance; 
         public static ObjectPool<T> Instance
@@ -31,11 +30,12 @@
         /// <summary>
         /// Number of remaining items in the pool
         /// </summary>
-        public int PoolSize => _poolStack?.Count ?? 0;
+        public int PoolSize => _poolList?.Count ?? 0;
 
         private ObjectPool()
         {
-            _poolContainer = new GameObject(typeof(T).Name);
+            _poolContainer = new GameObject($"{typeof(T).Name}-Pool");
+            _poolList = new List<T>(DEFAULT_POOL_SIZE);
         }
 
         /// <summary>
@@ -45,31 +45,39 @@
         /// <returns></returns>
         public void  Load(int poolSize=DEFAULT_POOL_SIZE)
         {
-            _poolStack = new Stack<T>(DEFAULT_POOL_SIZE);
-            Transform rootTransform = _poolContainer.transform;
             for (int i = 0; i < DEFAULT_POOL_SIZE; i++)
             {
-                GameObject gameObject = new GameObject();
-                _poolStack.Push(gameObject.AddComponent<T>());
-                gameObject.SetActive(false);
-                gameObject.transform.SetParent(rootTransform);
+                T item = new GameObject().AddComponent<T>();
+                ReleaseObject(item);
             }
         }
 
         /// <summary>
         /// Load the pool with the given objects
         /// </summary>
-        /// <param name="objects"></param>
+        /// <remarks>Objects aren't prefabs.</remarks>
+        /// <param name="objects">Array objects of type T</param>
         /// <returns></returns>
         public void Load(T[] objects)
         {
-            _poolStack = new Stack<T>(objects.Length);
-            Transform rootTransform = _poolContainer.transform;
             for (int i = 0; i < objects.Length; i++)
             {
-                _poolStack.Push(objects[i]);
-                objects[i].gameObject.SetActive(false);
-                objects[i].gameObject.transform.SetParent(rootTransform);
+                T item = objects[i];
+                ReleaseObject(item);
+            }
+        }
+
+        /// <summary>
+        /// Load the pool with count number of prefab
+        /// </summary>
+        /// <param name="prefab">Prefab to be instantiated in the pool</param>
+        /// <param name="count">Number of instantiation</param>
+        public void Load(T prefab, int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                T item = Object.Instantiate(prefab);
+                ReleaseObject(item);
             }
         }
 
@@ -80,8 +88,11 @@
         /// <returns>an active object of type T</returns>
         public T AcquireObject()
         {
-            T item =_poolStack.Pop();
+            int acquireIndex = Random.Range(0, _poolList.Count);
+            T item = _poolList[acquireIndex];
+            _poolList.RemoveAt(acquireIndex);
             item.gameObject.SetActive(true);
+            item.transform.SetParent(null);
             return item;
         }
 
@@ -91,9 +102,9 @@
         /// <param name="objectToRelease"></param>
         public void ReleaseObject(T objectToRelease)
         {
-            objectToRelease.gameObject.SetActive(false);
             objectToRelease.transform.SetParent(_poolContainer.transform);
-            _poolStack.Push(objectToRelease);
+            objectToRelease.gameObject.SetActive(false);
+            _poolList.Add(objectToRelease);
         }
 
         /// <summary>
@@ -102,7 +113,7 @@
         public void Clear()
         {
             Object.DestroyImmediate(_poolContainer);
-            _poolStack.Clear();
+            _poolList.Clear();
             _instance = null;
         }
     }

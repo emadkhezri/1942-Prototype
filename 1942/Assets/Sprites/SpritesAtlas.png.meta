@@ -14,6 +14,7 @@ TextureImporter:
     21300018: meteorSprite_5
     21300020: meteorSprite_6
     21300022: meteorSprite_7
+    21300024: meteorSprite_8
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -324,13 +325,33 @@ TextureImporter:
         width: 17
         height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 9fd5da37a386407499eb58e2421a19e2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: meteorSprite_8
+      rect:
+        serializedVersion: 2
+        x: 518
+        y: 131
+        width: 89
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cbea2da59711e945a97f1ee9882734f
       vertices: []
       indices: 
       edges: []
