@@ -13,26 +13,35 @@
         public int InstancesCount => _instanceInPool;
 
         private const float ENTITY_BOUND_SIZE = 1f;
-        private Vector2 _validPositionRange;
+        private Bounds _validBound;
 
-        // Use this for initialization
-        void OnEnable()
+        public void Init()
         {
-            _validPositionRange = new Vector2(-Camera.main.orthographicSize-ENTITY_BOUND_SIZE, Camera.main.orthographicSize +ENTITY_BOUND_SIZE);
-            float xPosition = Random.Range(_validPositionRange.x, _validPositionRange.y);
-            float yPosition = _validPositionRange.y;
+            float boundSize = (Camera.main.orthographicSize + ENTITY_BOUND_SIZE)*2f;
+            _validBound = new Bounds(Vector3.zero, new Vector3(boundSize, boundSize, boundSize));
+            float xPosition = Random.Range(_validBound.min.x, _validBound.max.x);
+            float yPosition = _validBound.max.y;
             transform.position = new Vector3(xPosition, yPosition);
             transform.Rotate(0, 0, Random.Range(0, 360));
         }
 
         // Update is called once per frame
-        void Update()
+        public void Tick()
         {
             transform.position -= new Vector3(0, Time.deltaTime * 3,0);
-            if(transform.position.y < _validPositionRange.x)
+        }
+
+        /// <summary>
+        /// MeteorEntity is invalid if its outside the valid bound
+        /// </summary>
+        /// <returns></returns>
+        public bool IsValid()
+        {
+            if (_validBound.Contains(transform.position))
             {
-                ObjectPool<MeteorEntity>.Instance.ReleaseObject(this);
+                return true;
             }
+            return false;
         }
     }
 
