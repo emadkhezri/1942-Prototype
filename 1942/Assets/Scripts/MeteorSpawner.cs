@@ -1,7 +1,7 @@
 ﻿namespace com.emad.game
 {
 
-    public class MeteorSpawner : EntitySpawner
+    public class MeteorSpawner : EntitySpawner<MeteorEntity>
     {
         protected override void Initialize()
         {

@@ -4,10 +4,10 @@
     using System.Collections;
     using System.Collections.Generic;
 
-    public class EntitySpawner : MonoBehaviour
+    public abstract class EntitySpawner<T> : MonoBehaviour where T: Entity
     {
         [SerializeField]
-        private Entity[] _entityPrefabs;        
+        protected T[] _entityPrefabs;        
 
         private List<Entity> _activeEntities;
 
@@ -20,7 +20,7 @@
             _activeEntities = new List<Entity>();
             for (int i = 0; i < _entityPrefabs.Length; i++)
             {
-                ObjectPool<Entity>.Instance.Load(_entityPrefabs[i], _entityPrefabs[i].InstancesCount);
+                ObjectPool<T>.Instance.Load(_entityPrefabs[i], _entityPrefabs[i].InstancesCount);
             }
             StartCoroutine(SpawnInterval());
         }
@@ -46,7 +46,7 @@
                 {
                     if (!_activeEntities[i].IsValid())
                     {
-                        ObjectPool<Entity>.Instance.ReleaseObject(_activeEntities[i]);
+                        ObjectPool<T>.Instance.ReleaseObject((T)_activeEntities[i]);
                         _activeEntities.RemoveAt(i);
                         yield return null;
                     }
@@ -54,7 +54,7 @@
                 }
 
                 //Spawn an entity
-                Entity entity = ObjectPool<Entity>.Instance.AcquireObject();
+                Entity entity = ObjectPool<T>.Instance.AcquireObject();
                 entity.Init();
                 _activeEntities.Add(entity);
 
