@@ -19,7 +19,6 @@
             float xPosition = Random.Range(GameSettings.Instance.SpawningBound.min.x, GameSettings.Instance.SpawningBound.max.x);
             float yPosition = GameSettings.Instance.SpawningBound.max.y;
             transform.position = new Vector3(xPosition, yPosition);
-            transform.Rotate(0, 0, Random.Range(0, 360));
         }
 
         // Update is called once per frame

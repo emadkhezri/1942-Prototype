@@ -38,13 +38,29 @@
         private float _meteorSpeed = 2;
         public float MeteorSpeed => _meteorSpeed;
 
-        private const float MIN_SPAWN_INTERVAL = 0.5f;
-        private const float MAX_SPAWN_INTERVAL = 5f;
+        private const float MIN_METEOR_SPAWN_INTERVAL = 0.5f;
+        private const float MAX_METEOR_SPAWN_INTERVAL = 5f;
         [SerializeField]
-        [Range(MIN_SPAWN_INTERVAL, MAX_SPAWN_INTERVAL)]
+        [Range(MIN_METEOR_SPAWN_INTERVAL, MAX_METEOR_SPAWN_INTERVAL)]
         private float _meteorSpawningInterval = 2;
         public float MeteorSpawningInterval => _meteorSpawningInterval;
-                    
+
+        #endregion
+
+        #region Enemy Settings
+
+        [Header("Enemy Settings")]
+        [SerializeField]
+        private float _enemySpeed = 2;
+        public float EnemySpeed => _enemySpeed;
+
+        private const float MIN_ENEMY_SPAWN_INTERVAL = 0.5f;
+        private const float MAX_ENEMY_SPAWN_INTERVAL = 5f;
+        [SerializeField]
+        [Range(MIN_ENEMY_SPAWN_INTERVAL, MAX_ENEMY_SPAWN_INTERVAL)]
+        private float _enemySpawningInterval = 2;
+        public float EnemySpawningInterval => _enemySpawningInterval;
+
         #endregion
     }
 
