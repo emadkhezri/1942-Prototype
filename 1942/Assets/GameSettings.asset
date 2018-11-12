@@ -11,12 +11,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9d6e0036406f2d4a8ab7a81f1fe4cef, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
+  _screenBound:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 5.5, y: 4.5, z: 5}
   _spawningBound:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 5, y: 8, z: 5}
-  _meteorSpeed: 6
-  _meteorSpawningInterval: 0.5
+  _meteorSpeed: 1
+  _meteorSpawningInterval: 5
   _meteorZLayer: 1
   _enemySpeed: 2
-  _enemySpawningInterval: 5
+  _enemySpawningInterval: 1.19
   _enemyzLayer: 0
+  _playerSpeed: 5
+  _bulletSpawningInterval: 1
+  _bulletSpeed: 15

@@ -4,18 +4,18 @@
     public class PlayerEntity : MonoBehaviour
     {
 
-        private void Update()
+        void Update()
         {
             //Update X axis
             float xOffset = Input.GetAxis("Horizontal") * Time.deltaTime * GameSettings.Instance.PlayerSpeed;
-            Update(new Vector3(xOffset, 0));
+            UpdatePosition(new Vector3(xOffset, 0));
 
             //Update Y axis
             float yOffset = Input.GetAxis("Vertical") * Time.deltaTime * GameSettings.Instance.PlayerSpeed;
-            Update(new Vector3(0, yOffset));
+            UpdatePosition(new Vector3(0, yOffset));
         }
 
-        private void Update(Vector3 offset)
+        private void UpdatePosition(Vector3 offset)
         {
             Vector3 position = transform.position;
             position += offset;

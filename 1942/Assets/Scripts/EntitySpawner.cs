@@ -16,7 +16,6 @@
         // Use this for initialization
         void Start()
         {
-            Initialize();
             _activeEntities = new List<Entity>();
             for (int i = 0; i < _entityPrefabs.Length; i++)
             {
@@ -27,15 +26,16 @@
 
         void Update()
         {
+            Tick();
             for (int i = 0; i < _activeEntities.Count; i++)
             {
                 _activeEntities[i].Tick();
             }
         }
 
-        /// Using template method pattern
-        protected virtual void Initialize() {}
-
+        //Template method pattern
+        protected abstract void Tick();
+        
         private IEnumerator SpawnInterval()
         {
             while (true)
@@ -55,7 +55,7 @@
 
                 //Spawn an entity
                 Entity entity = ObjectPool<T>.Instance.AcquireObject();
-                entity.Init();
+                entity.Init(transform);
                 _activeEntities.Add(entity);
 
                 yield return new WaitForSeconds(_spawningIntervals);

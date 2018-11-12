@@ -4,10 +4,10 @@
 
     public class MeteorEntity : Entity
     {
-        public override void Init()
+        public override void Init(Transform parentTransform)
         {
             _entityZLayer = GameSettings.Instance.MeteorZLayer;
-            base.Init();
+            base.Init(parentTransform);
             transform.Rotate(0, 0, Random.Range(0, 360));
             _entitySpeed = GameSettings.Instance.MeteorSpeed;
         }

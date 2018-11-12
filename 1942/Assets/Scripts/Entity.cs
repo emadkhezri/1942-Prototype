@@ -15,11 +15,12 @@
         protected float _entitySpeed;
         protected float _entityZLayer;
 
-        public virtual void Init()
+        public virtual void Init(Transform parentTransform)
         {
             float xPosition = Random.Range(GameSettings.Instance.SpawningBound.min.x, GameSettings.Instance.SpawningBound.max.x);
             float yPosition = GameSettings.Instance.SpawningBound.max.y;
             transform.position = new Vector3(xPosition, yPosition, _entityZLayer);
+            transform.SetParent(parentTransform);
         }
 
         // Update is called once per frame

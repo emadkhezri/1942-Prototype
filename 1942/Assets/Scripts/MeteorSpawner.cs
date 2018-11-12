@@ -3,9 +3,9 @@
 
     public class MeteorSpawner : EntitySpawner<MeteorEntity>
     {
-        protected override void Initialize()
+
+        protected override void Tick()
         {
-            base.Initialize();
             _spawningIntervals = GameSettings.Instance.MeteorSpawningInterval;
         }
     }

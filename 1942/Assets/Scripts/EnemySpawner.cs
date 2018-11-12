@@ -3,9 +3,9 @@
 
     public class EnemySpawner : EntitySpawner<EnemyEntity>
     {
-        protected override void Initialize()
+
+        protected override void Tick()
         {
-            base.Initialize();
             _spawningIntervals = GameSettings.Instance.EnemySpawningInterval;
         }
     }

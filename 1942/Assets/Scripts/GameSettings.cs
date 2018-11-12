@@ -79,6 +79,14 @@
         [SerializeField]
         private float _playerSpeed;
         public float PlayerSpeed => _playerSpeed;
+
+        [SerializeField]
+        private float _bulletSpawningInterval;
+        public float BulletSpawningInterval => _bulletSpawningInterval;
+
+        [SerializeField]
+        private float _bulletSpeed;
+        public float BulletSpeed => _bulletSpeed;
         #endregion
     }
 
