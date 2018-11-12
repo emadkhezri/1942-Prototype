@@ -28,6 +28,10 @@
         public void Load() => _instance = this;
 
         [SerializeField]
+        private Bounds _screenBound;
+        public Bounds ScreenBound => _screenBound;
+
+        [SerializeField]
         private Bounds _spawningBound;
         public Bounds SpawningBound => _spawningBound;
 
@@ -45,6 +49,9 @@
         private float _meteorSpawningInterval = 2;
         public float MeteorSpawningInterval => _meteorSpawningInterval;
 
+        [SerializeField]
+        private float _meteorZLayer = 1;
+        public float MeteorZLayer => _meteorZLayer;
         #endregion
 
         #region Enemy Settings
@@ -61,6 +68,17 @@
         private float _enemySpawningInterval = 2;
         public float EnemySpawningInterval => _enemySpawningInterval;
 
+        [SerializeField]
+        private float _enemyzLayer = 1;
+        public float EnemyZLayer => _enemyzLayer;
+
+        #endregion
+
+        #region Player Settings
+        [Header("Player Settings")]
+        [SerializeField]
+        private float _playerSpeed;
+        public float PlayerSpeed => _playerSpeed;
         #endregion
     }
 

@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\MeteorEntity.cs" />
     <Compile Include="Assets\Scripts\MeteorSpawner.cs" />
     <Compile Include="Assets\Scripts\ObjectPool.cs" />
+    <Compile Include="Assets\Scripts\PlayerEntity.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/Ekhez/Unity Projects/1942-Prototype/1942/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

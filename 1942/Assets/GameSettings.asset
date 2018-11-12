@@ -16,5 +16,7 @@ MonoBehaviour:
     m_Extent: {x: 5, y: 8, z: 5}
   _meteorSpeed: 6
   _meteorSpawningInterval: 0.5
+  _meteorZLayer: 1
   _enemySpeed: 2
   _enemySpawningInterval: 5
+  _enemyzLayer: 0

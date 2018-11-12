@@ -1,11 +1,12 @@
 ﻿namespace com.emad.game
 {
-    using UnityEngine;
+
     public class EnemyEntity : Entity
     {
         
         public override void Init()
         {
+            _entityZLayer = GameSettings.Instance.EnemyZLayer;
             base.Init();
             _entitySpeed = GameSettings.Instance.EnemySpeed;
         }

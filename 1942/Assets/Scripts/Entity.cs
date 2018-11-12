@@ -13,12 +13,13 @@
         public int InstancesCount => _instanceInPool;
 
         protected float _entitySpeed;
+        protected float _entityZLayer;
 
         public virtual void Init()
         {
             float xPosition = Random.Range(GameSettings.Instance.SpawningBound.min.x, GameSettings.Instance.SpawningBound.max.x);
             float yPosition = GameSettings.Instance.SpawningBound.max.y;
-            transform.position = new Vector3(xPosition, yPosition);
+            transform.position = new Vector3(xPosition, yPosition, _entityZLayer);
         }
 
         // Update is called once per frame
