@@ -1,6 +1,7 @@
-﻿namespace com.emad.game
+﻿namespace com.emad.game.entities
 {
     using UnityEngine;
+
     public class EnemyBulletEntity : Entity
     {
         void Update()

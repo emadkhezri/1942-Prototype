@@ -2,6 +2,7 @@
 {
     using UnityEngine;
     using System.Collections;
+    using com.emad.game.entities;
 
     public abstract class EntitySpawner<T> : MonoBehaviour where T: Entity
     {

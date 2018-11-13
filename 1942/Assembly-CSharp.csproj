@@ -60,14 +60,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\EnemyBulletEntity.cs" />
-    <Compile Include="Assets\Scripts\EnemyEntity.cs" />
-    <Compile Include="Assets\Scripts\Entity.cs" />
+    <Compile Include="Assets\Scripts\Entities\EnemyBulletEntity.cs" />
+    <Compile Include="Assets\Scripts\Entities\EnemyEntity.cs" />
+    <Compile Include="Assets\Scripts\Entities\Entity.cs" />
+    <Compile Include="Assets\Scripts\Entities\MeteorEntity.cs" />
+    <Compile Include="Assets\Scripts\Entities\PlayerBulletEntity.cs" />
+    <Compile Include="Assets\Scripts\Entities\PlayerEntity.cs" />
     <Compile Include="Assets\Scripts\GameSettings.cs" />
-    <Compile Include="Assets\Scripts\MeteorEntity.cs" />
     <Compile Include="Assets\Scripts\ObjectPool.cs" />
-    <Compile Include="Assets\Scripts\PlayerBulletEntity.cs" />
-    <Compile Include="Assets\Scripts\PlayerEntity.cs" />
     <Compile Include="Assets\Scripts\Spawners\EnemyBulletSpawner.cs" />
     <Compile Include="Assets\Scripts\Spawners\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\Spawners\EntitySpawner.cs" />

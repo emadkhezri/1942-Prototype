@@ -1,5 +1,6 @@
 ﻿namespace com.emad.game.spawners
 {
+    using com.emad.game.entities;
 
     public class EnemySpawner : EntitySpawner<EnemyEntity>
     {
