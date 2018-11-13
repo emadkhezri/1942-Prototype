@@ -1,10 +1,14 @@
 ﻿namespace com.emad.game.entities
 {
     using UnityEngine;
-    public class PlayerEntity : MonoBehaviour
+    public class PlayerEntity : Entity
     {
+        void Start()
+        {
+            EntityManager.Instance.Add(this);
+        }
 
-        void Update()
+        public override void Tick()
         {
             //Update X axis
             float xOffset = Input.GetAxis("Horizontal") * Time.deltaTime * GameSettings.Instance.PlayerSpeed;
@@ -23,6 +27,12 @@
             {
                 transform.position = position;
             }
+        }
+
+        public override void DeSpawn()
+        {
+            base.DeSpawn();
+            gameObject.SetActive(false);
         }
     }
 

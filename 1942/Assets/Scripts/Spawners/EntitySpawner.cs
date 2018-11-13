@@ -11,23 +11,28 @@
 
         protected virtual float SpawningInterval { get; }
 
-        void Start()
+        void Awake()
         {
             for (int i = 0; i < _entityPrefabs.Length; i++)
             {
                 ObjectPool<T>.Instance.Load(_entityPrefabs[i], _entityPrefabs[i].InstancesCount);
             }
+            StartSpawningProcess();
+        }
+
+        protected virtual void StartSpawningProcess()
+        {
             StartCoroutine(SpawnerProcess());
         }
 
-        private IEnumerator SpawnerProcess()
+        protected IEnumerator SpawnerProcess()
         {
             while (true)
             {
                 //Spawn an entity
                 T entity = ObjectPool<T>.Instance.AcquireObject();
                 EntityManager.Instance.Add(entity);
-                entity.OnSpawn(transform);
+                entity.OnSpawned(transform);
 
                 yield return new WaitForSeconds(SpawningInterval);
             }

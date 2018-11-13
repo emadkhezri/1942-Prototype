@@ -22,21 +22,22 @@
                 return _instance;
             }
         }
-        private List<IEntity> _entities=new List<IEntity>();
+        private List<IEntity> _entities = new List<IEntity>();
 
-        public void Add(IEntity _entity)
+        public void Add(IEntity entity)
         {
-            _entities.Add(_entity);
+            _entities.Add(entity);
         }
 
+        public void Remove(IEntity entity)
+        {
+            _entities.Remove(entity);
+        }
         void Update()
         {
             for (int i = _entities.Count - 1; i >= 0; i--)
             {
-                if (_entities[i].IsDisabled)
-                    _entities.RemoveAt(i);
-                else
-                    _entities[i].Tick();
+                _entities[i].Tick();
             }
         }
     }

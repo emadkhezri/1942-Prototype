@@ -16,13 +16,16 @@ MonoBehaviour:
     m_Extent: {x: 5.5, y: 4.5, z: 5}
   _spawningBound:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 5, y: 8, z: 5}
-  _meteorSpeed: 1
-  _meteorSpawningInterval: 5
+    m_Extent: {x: 5, y: 7, z: 5}
+  _meteorSpeed: 0.6
+  _meteorSpawningInterval: 1.5
   _meteorZLayer: 1
-  _enemySpeed: 2
-  _enemySpawningInterval: 1.19
+  _enemySpeed: 1.5
+  _enemySpawningInterval: 4
   _enemyzLayer: 0
+  _enemyBulletSpeed: 4
+  _enemyBulletSpawningInterval: 4
   _playerSpeed: 5
-  _bulletSpawningInterval: 1
-  _bulletSpeed: 15
+  _playerBulletSpawningInterval: 1
+  _playerZLayer: 0
+  _playerBulletSpeed: -8

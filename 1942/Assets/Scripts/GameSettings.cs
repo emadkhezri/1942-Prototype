@@ -78,7 +78,7 @@
         [SerializeField]
         [Range(MIN_SPAWN_INTERVAL, MAX_SPAWN_INTERVAL)]
         private float _enemyBulletSpawningInterval;
-        public float EnemyBulletSpawningInterval => _playerBulletSpawningInterval;
+        public float EnemyBulletSpawningInterval => _enemyBulletSpawningInterval;
 
         #endregion
 

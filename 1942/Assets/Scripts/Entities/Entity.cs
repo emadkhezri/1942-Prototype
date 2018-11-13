@@ -14,31 +14,26 @@
         /// </summary>
         public int InstancesCount => _instanceInPool;
 
-        private bool _isDisabled;
-        public bool IsDisabled => _isDisabled;
-
         protected float _entitySpeed;
         protected float _entityZLayer;
 
-        public virtual void OnSpawn(Transform parentTransform)
+        public virtual void OnSpawned(Transform parentTransform)
         {
-            _isDisabled = false;
             float xPosition = Random.Range(GameSettings.Instance.SpawningBound.min.x, GameSettings.Instance.SpawningBound.max.x);
             float yPosition = GameSettings.Instance.SpawningBound.max.y;
             transform.position = new Vector3(xPosition, yPosition, _entityZLayer);
             transform.SetParent(parentTransform);
-            StartCoroutine(UnspawnProcess());
+            StartCoroutine(DeSpawnProcess());
         }
 
-        protected IEnumerator UnspawnProcess()
+        protected IEnumerator DeSpawnProcess()
         {
             while (true)
             {
-                CheckSpawningBound();
-
-                if (_isDisabled)
+                //Does the entity needs to despawn
+                if (!GameSettings.Instance.SpawningBound.Contains(transform.position))
                 {
-                    UnSpawn();
+                    DeSpawn();
                     break;
                 }
 
@@ -46,28 +41,17 @@
             }
         }
 
-        protected abstract void UnSpawn();
+        public virtual void DeSpawn()
+        {
+            StopCoroutine(DeSpawnProcess());
+            EntityManager.Instance.Remove(this);
+        }
 
         public virtual void Tick()
         {
-            transform.position -= new Vector3(0, Time.deltaTime * _entitySpeed, 0);
+            transform.localPosition -= new Vector3(0, Time.deltaTime * _entitySpeed, 0);
         }
 
-        /// <summary>
-        /// Check the spawning bound to see if it needs to set the entity to disable
-        /// </summary>
-        /// <returns></returns>
-        protected void CheckSpawningBound()
-        {
-            if (!GameSettings.Instance.SpawningBound.Contains(transform.position))
-            {
-                _isDisabled = true;
-            }
-            else
-            {
-                _isDisabled = false;;
-            }
-        }
     }
 
 }
