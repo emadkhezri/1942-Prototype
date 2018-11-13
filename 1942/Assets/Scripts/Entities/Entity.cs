@@ -3,7 +3,7 @@
     using UnityEngine;
     using System.Collections;
 
-    public abstract class Entity : MonoBehaviour
+    public abstract class Entity : MonoBehaviour, IEntity
     {
         private const float UNSPAWN_PROCESS_INTERVAL = 2f;
 
@@ -14,15 +14,15 @@
         /// </summary>
         public int InstancesCount => _instanceInPool;
 
-        protected bool _isValid { get; private set; }
-
+        private bool _isDisabled;
+        public bool IsDisabled => _isDisabled;
 
         protected float _entitySpeed;
         protected float _entityZLayer;
 
         public virtual void OnSpawn(Transform parentTransform)
         {
-            _isValid = true;
+            _isDisabled = false;
             float xPosition = Random.Range(GameSettings.Instance.SpawningBound.min.x, GameSettings.Instance.SpawningBound.max.x);
             float yPosition = GameSettings.Instance.SpawningBound.max.y;
             transform.position = new Vector3(xPosition, yPosition, _entityZLayer);
@@ -34,9 +34,9 @@
         {
             while (true)
             {
-                EvaluateValidation();
+                CheckSpawningBound();
 
-                if (!_isValid)
+                if (_isDisabled)
                 {
                     UnSpawn();
                     break;
@@ -48,29 +48,24 @@
 
         protected abstract void UnSpawn();
 
-        private void Update()
-        {
-            Tick();
-        }
-        // Update is called once per frame
         public virtual void Tick()
         {
             transform.position -= new Vector3(0, Time.deltaTime * _entitySpeed, 0);
         }
 
         /// <summary>
-        /// Check the entity validation
+        /// Check the spawning bound to see if it needs to set the entity to disable
         /// </summary>
         /// <returns></returns>
-        protected void EvaluateValidation()
+        protected void CheckSpawningBound()
         {
-            if (GameSettings.Instance.SpawningBound.Contains(transform.position))
+            if (!GameSettings.Instance.SpawningBound.Contains(transform.position))
             {
-                _isValid = true;
+                _isDisabled = true;
             }
             else
             {
-                _isValid = false;;
+                _isDisabled = false;;
             }
         }
     }

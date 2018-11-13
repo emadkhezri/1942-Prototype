@@ -26,6 +26,7 @@
             {
                 //Spawn an entity
                 T entity = ObjectPool<T>.Instance.AcquireObject();
+                EntityManager.Instance.Add(entity);
                 entity.OnSpawn(transform);
 
                 yield return new WaitForSeconds(SpawningInterval);

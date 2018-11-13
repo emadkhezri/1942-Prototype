@@ -63,6 +63,8 @@
     <Compile Include="Assets\Scripts\Entities\EnemyBulletEntity.cs" />
     <Compile Include="Assets\Scripts\Entities\EnemyEntity.cs" />
     <Compile Include="Assets\Scripts\Entities\Entity.cs" />
+    <Compile Include="Assets\Scripts\Entities\EntityManager.cs" />
+    <Compile Include="Assets\Scripts\Entities\IEntity.cs" />
     <Compile Include="Assets\Scripts\Entities\MeteorEntity.cs" />
     <Compile Include="Assets\Scripts\Entities\PlayerBulletEntity.cs" />
     <Compile Include="Assets\Scripts\Entities\PlayerEntity.cs" />

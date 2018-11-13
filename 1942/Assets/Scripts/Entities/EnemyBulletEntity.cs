@@ -4,10 +4,6 @@
 
     public class EnemyBulletEntity : Entity
     {
-        void Update()
-        {
-            Tick();
-        }
 
         protected override void UnSpawn()
         {
