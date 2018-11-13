@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4894416681149400}
-  - component: {fileID: 114009882546662232}
+  - component: {fileID: 114313426630417874}
   m_Layer: 0
   m_Name: bulletSpawner
   m_TagString: Untagged
@@ -71,7 +71,7 @@ Transform:
   m_Father: {fileID: 4856118244553446}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114009882546662232
+--- !u!114 &114313426630417874
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1407060160162944}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6148b6c69977c24793d22dd7d8adb47, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b6dee194b7fd194db28751fa4b59114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _entityPrefabs:

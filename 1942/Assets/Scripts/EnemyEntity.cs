@@ -3,11 +3,15 @@
     using UnityEngine;
     public class EnemyEntity : Entity
     {
-        
-        public override void Init(Transform parentTransform)
+        protected override void UnSpawn()
+        {
+            ObjectPool<EnemyEntity>.Instance.ReleaseObject(this);
+        }
+
+        public override void OnSpawn(Transform parentTransform)
         {
             _entityZLayer = GameSettings.Instance.EnemyZLayer;
-            base.Init(parentTransform);
+            base.OnSpawn(parentTransform);
             _entitySpeed = GameSettings.Instance.EnemySpeed;
         }
     }

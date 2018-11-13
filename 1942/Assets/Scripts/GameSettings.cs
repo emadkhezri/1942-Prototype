@@ -35,6 +35,9 @@
         private Bounds _spawningBound;
         public Bounds SpawningBound => _spawningBound;
 
+        private const float MIN_SPAWN_INTERVAL = 0.5f;
+        private const float MAX_SPAWN_INTERVAL = 10f;
+
         #region Meteor Settings
 
         [Header("Meteor Settings")]
@@ -42,10 +45,8 @@
         private float _meteorSpeed = 2;
         public float MeteorSpeed => _meteorSpeed;
 
-        private const float MIN_METEOR_SPAWN_INTERVAL = 0.5f;
-        private const float MAX_METEOR_SPAWN_INTERVAL = 5f;
         [SerializeField]
-        [Range(MIN_METEOR_SPAWN_INTERVAL, MAX_METEOR_SPAWN_INTERVAL)]
+        [Range(MIN_SPAWN_INTERVAL, MAX_SPAWN_INTERVAL)]
         private float _meteorSpawningInterval = 2;
         public float MeteorSpawningInterval => _meteorSpawningInterval;
 
@@ -61,16 +62,23 @@
         private float _enemySpeed = 2;
         public float EnemySpeed => _enemySpeed;
 
-        private const float MIN_ENEMY_SPAWN_INTERVAL = 0.5f;
-        private const float MAX_ENEMY_SPAWN_INTERVAL = 5f;
         [SerializeField]
-        [Range(MIN_ENEMY_SPAWN_INTERVAL, MAX_ENEMY_SPAWN_INTERVAL)]
+        [Range(MIN_SPAWN_INTERVAL, MAX_SPAWN_INTERVAL)]
         private float _enemySpawningInterval = 2;
         public float EnemySpawningInterval => _enemySpawningInterval;
 
         [SerializeField]
         private float _enemyzLayer = 1;
         public float EnemyZLayer => _enemyzLayer;
+
+        [SerializeField]
+        private float _enemyBulletSpeed;
+        public float EnemyBulletSpeed => _enemyBulletSpeed;
+
+        [SerializeField]
+        [Range(MIN_SPAWN_INTERVAL, MAX_SPAWN_INTERVAL)]
+        private float _enemyBulletSpawningInterval;
+        public float EnemyBulletSpawningInterval => _playerBulletSpawningInterval;
 
         #endregion
 
@@ -81,12 +89,17 @@
         public float PlayerSpeed => _playerSpeed;
 
         [SerializeField]
-        private float _bulletSpawningInterval;
-        public float BulletSpawningInterval => _bulletSpawningInterval;
+        [Range(MIN_SPAWN_INTERVAL, MAX_SPAWN_INTERVAL)]
+        private float _playerBulletSpawningInterval;
+        public float PlayerBulletSpawningInterval => _playerBulletSpawningInterval;
 
         [SerializeField]
-        private float _bulletSpeed;
-        public float BulletSpeed => _bulletSpeed;
+        private float _playerZLayer = 1;
+        public float PlayerZLayer => _playerZLayer;
+
+        [SerializeField]
+        private float _playerBulletSpeed;
+        public float PlayerBulletSpeed => _playerBulletSpeed;
         #endregion
     }
 

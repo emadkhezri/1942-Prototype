@@ -4,10 +4,15 @@
 
     public class MeteorEntity : Entity
     {
-        public override void Init(Transform parentTransform)
+        protected override void UnSpawn()
+        {
+            ObjectPool<MeteorEntity>.Instance.ReleaseObject(this);
+        }
+
+        public override void OnSpawn(Transform parentTransform)
         {
             _entityZLayer = GameSettings.Instance.MeteorZLayer;
-            base.Init(parentTransform);
+            base.OnSpawn(parentTransform);
             transform.Rotate(0, 0, Random.Range(0, 360));
             _entitySpeed = GameSettings.Instance.MeteorSpeed;
         }
